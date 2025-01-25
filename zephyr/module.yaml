@@ -1,3 +1,4 @@
+name: royalblue54l_zephyr_boards
 build:
   settings:
     board_root: .
