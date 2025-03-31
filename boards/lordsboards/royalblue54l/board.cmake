@@ -9,5 +9,5 @@ if(CONFIG_TFM_FLASH_MERGED_BINARY)
   set_property(TARGET runners_yaml_props_target PROPERTY hex_file tfm_merged.hex)
 endif()
 
-board_runner_args(pyocd "--target=nrf52833" "--frequency=4000000")
+board_runner_args(pyocd "--target=nrf54l" "--frequency=4000000")
 include(${ZEPHYR_BASE}/boards/common/pyocd.board.cmake)

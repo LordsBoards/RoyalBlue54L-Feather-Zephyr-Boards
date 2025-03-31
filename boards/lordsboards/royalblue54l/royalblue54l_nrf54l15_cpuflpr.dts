@@ -13,8 +13,6 @@
 	compatible = "nordic,nrf54l15dk_nrf54l15-cpuflpr";
 
 	chosen {
-		zephyr,console = &uart30;
-		zephyr,shell-uart = &uart30;
 		zephyr,code-partition = &cpuflpr_code_partition;
 		zephyr,flash = &cpuflpr_rram;
 		zephyr,sram = &cpuflpr_sram;
@@ -43,10 +41,6 @@
 
 &grtc {
 	owned-channels = <3 4>;
-	status = "okay";
-};
-
-&uart30 {
 	status = "okay";
 };
 
