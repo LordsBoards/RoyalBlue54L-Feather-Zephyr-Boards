@@ -21,11 +21,17 @@
 		port-write-cycles = <2>;
 	};
 
+	uart-bridge {
+			 compatible = "zephyr,uart-bridge";
+			 peers = <&cdc_acm_uart &uart_passthrough>;
+	};
+
 	chosen {
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
 		zephyr,code-partition = &slot0_partition;
-		zephyr,ieee802154 = &ieee802154;
+		zephyr,console = &cdc_acm_uart;
+		zephyr,shell-uart = &cdc_acm_uart;
 	};
 
 	aliases {
@@ -36,6 +42,7 @@
 &reg1 {
 	regulator-initial-mode = <NRF5X_REG_MODE_LDO>;
 };
+
 &uicr {
 	gpio-as-nreset;
 };
@@ -52,7 +59,7 @@
 	status = "okay";
 };
 
-&uart0 {
+uart_passthrough: &uart0 {
 	compatible = "nordic,nrf-uarte";
 	status = "okay";
 	current-speed = <115200>;
@@ -94,4 +101,8 @@
 zephyr_udc0: &usbd {
 	compatible = "nordic,nrf-usbd";
 	status = "okay";
+
+	cdc_acm_uart: cdc_acm_uart {
+		compatible = "zephyr,cdc-acm-uart";
+	};
 };
